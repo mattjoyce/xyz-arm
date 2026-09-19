@@ -1,0 +1,102 @@
+{
+  "capture_path": "decoded_and_reencoded",
+  "captured_at": "2026-09-13T08:52:50.197856+10:00",
+  "file": "focus-02-3.133d.jpg",
+  "focus_diopters_asked": 3.133,
+  "from": "the capture itself",
+  "image": "002-focus-02-3.133d.jpg",
+  "measured": {
+    "ae_state": 0,
+    "af_state": "inactive",
+    "awb_gains": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "colour_transform": [
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    "exposure_human": "24.97ms (1/40)",
+    "exposure_ns": 24971256,
+    "focus_diopters": 3.12,
+    "focus_metres_approx": 0.32,
+    "iso": 199,
+    "sensor_timestamp": 76685121313356
+  },
+  "orientation": {
+    "aim": "tilted well off straight down (57.44 degrees from gravity)",
+    "ambient_lux": 80.51,
+    "available": true,
+    "gravity": {
+      "x": 8.25,
+      "y": 0.57,
+      "z": 5.28
+    },
+    "measures": "the angle between the optical axis and gravity, averaged over 32 samples. It equals the angle to a flat subject only when the subject lies on a level surface.",
+    "pitch_degrees": 6.21,
+    "roll_degrees": 57.38,
+    "samples": 32,
+    "tilt_degrees": 57.44
+  },
+  "pipeline": {
+    "aberration": "off",
+    "edge": "high_quality",
+    "hot_pixel": "fast",
+    "noise_reduction": "high_quality",
+    "ois": "on",
+    "shading": "fast",
+    "tonemap": "fast",
+    "tonemap_points": 64
+  },
+  "settings": {
+    "ae": "manual",
+    "ae_lock": false,
+    "af": "off",
+    "awb": "off",
+    "awb_gains_set": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "awb_lock": false,
+    "camera": "0",
+    "capture_path": "decoded_and_reencoded",
+    "cx": 0.31,
+    "cy": 0.667,
+    "ev": 0,
+    "exposure_human": "25.00ms (1/40)",
+    "exposure_ns": 25000000,
+    "focus_box": [
+      0.409,
+      0.67,
+      0.045,
+      0.045
+    ],
+    "focus_diopters": 3.13,
+    "focus_metres": 0.319,
+    "iso": 200,
+    "jpeg_quality": 92,
+    "measure": false,
+    "out_h": null,
+    "out_w": null,
+    "preview_size": "1280x960",
+    "preview_size_requested": "1280x960",
+    "rotate": 0,
+    "shading_map": false,
+    "still_size": "max",
+    "torch": 0,
+    "zoom": 2
+  },
+  "step": 2,
+  "tool": "DeskCam"
+}

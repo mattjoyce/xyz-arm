@@ -1,0 +1,712 @@
+{
+  "walk": "focus",
+  "from_diopters": 2.6,
+  "to_diopters": 4.2,
+  "steps": 7,
+  "steps_are": "equal in diopters, which is equal in depth of field. The lens calibration is APPROXIMATE, so these are ordered positions and not distances.",
+  "tool": "DeskCam",
+  "millis": 4985,
+  "warnings": [],
+  "frames": [
+    {
+      "tool": "DeskCam",
+      "captured_at": "2026-09-13T08:52:48.728767+10:00",
+      "capture_path": "decoded_and_reencoded",
+      "settings": {
+        "camera": "0",
+        "zoom": 2,
+        "cx": 0.31,
+        "cy": 0.667,
+        "af": "off",
+        "focus_diopters": 2.6,
+        "focus_metres": 0.385,
+        "ae": "manual",
+        "exposure_ns": 25000000,
+        "exposure_human": "25.00ms (1\/40)",
+        "iso": 200,
+        "ev": 0,
+        "ae_lock": false,
+        "awb": "off",
+        "awb_lock": false,
+        "awb_gains_set": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "focus_box": [
+          0.409,
+          0.67,
+          0.045,
+          0.045
+        ],
+        "torch": 0,
+        "measure": false,
+        "shading_map": false,
+        "jpeg_quality": 92,
+        "rotate": 0,
+        "out_w": null,
+        "out_h": null,
+        "capture_path": "decoded_and_reencoded",
+        "preview_size": "1280x960",
+        "preview_size_requested": "1280x960",
+        "still_size": "max"
+      },
+      "orientation": {
+        "available": true,
+        "samples": 32,
+        "gravity": {
+          "x": 8.25,
+          "y": 0.57,
+          "z": 5.28
+        },
+        "tilt_degrees": 57.44,
+        "roll_degrees": 57.37,
+        "pitch_degrees": 6.21,
+        "aim": "tilted well off straight down (57.44 degrees from gravity)",
+        "measures": "the angle between the optical axis and gravity, averaged over 32 samples. It equals the angle to a flat subject only when the subject lies on a level surface.",
+        "ambient_lux": 80.51
+      },
+      "measured": {
+        "exposure_ns": 24971256,
+        "exposure_human": "24.97ms (1\/40)",
+        "iso": 199,
+        "focus_diopters": 2.6,
+        "focus_metres_approx": 0.384,
+        "af_state": "inactive",
+        "ae_state": 0,
+        "sensor_timestamp": 76683653819460,
+        "awb_gains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "colour_transform": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "pipeline": {
+        "noise_reduction": "high_quality",
+        "edge": "high_quality",
+        "tonemap": "fast",
+        "shading": "fast",
+        "hot_pixel": "fast",
+        "aberration": "off",
+        "ois": "on",
+        "tonemap_points": 64
+      },
+      "file": "focus-00-2.600d.jpg",
+      "step": 0,
+      "focus_diopters_asked": 2.6
+    },
+    {
+      "tool": "DeskCam",
+      "captured_at": "2026-09-13T08:52:49.481535+10:00",
+      "capture_path": "decoded_and_reencoded",
+      "settings": {
+        "camera": "0",
+        "zoom": 2,
+        "cx": 0.31,
+        "cy": 0.667,
+        "af": "off",
+        "focus_diopters": 2.87,
+        "focus_metres": 0.349,
+        "ae": "manual",
+        "exposure_ns": 25000000,
+        "exposure_human": "25.00ms (1\/40)",
+        "iso": 200,
+        "ev": 0,
+        "ae_lock": false,
+        "awb": "off",
+        "awb_lock": false,
+        "awb_gains_set": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "focus_box": [
+          0.409,
+          0.67,
+          0.045,
+          0.045
+        ],
+        "torch": 0,
+        "measure": false,
+        "shading_map": false,
+        "jpeg_quality": 92,
+        "rotate": 0,
+        "out_w": null,
+        "out_h": null,
+        "capture_path": "decoded_and_reencoded",
+        "preview_size": "1280x960",
+        "preview_size_requested": "1280x960",
+        "still_size": "max"
+      },
+      "orientation": {
+        "available": true,
+        "samples": 32,
+        "gravity": {
+          "x": 8.25,
+          "y": 0.58,
+          "z": 5.28
+        },
+        "tilt_degrees": 57.44,
+        "roll_degrees": 57.38,
+        "pitch_degrees": 6.22,
+        "aim": "tilted well off straight down (57.44 degrees from gravity)",
+        "measures": "the angle between the optical axis and gravity, averaged over 32 samples. It equals the angle to a flat subject only when the subject lies on a level surface.",
+        "ambient_lux": 80.51
+      },
+      "measured": {
+        "exposure_ns": 24971256,
+        "exposure_human": "24.97ms (1\/40)",
+        "iso": 199,
+        "focus_diopters": 2.88,
+        "focus_metres_approx": 0.347,
+        "af_state": "inactive",
+        "ae_state": 0,
+        "sensor_timestamp": 76684387566286,
+        "awb_gains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "colour_transform": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "pipeline": {
+        "noise_reduction": "high_quality",
+        "edge": "high_quality",
+        "tonemap": "fast",
+        "shading": "fast",
+        "hot_pixel": "fast",
+        "aberration": "off",
+        "ois": "on",
+        "tonemap_points": 64
+      },
+      "file": "focus-01-2.867d.jpg",
+      "step": 1,
+      "focus_diopters_asked": 2.867
+    },
+    {
+      "tool": "DeskCam",
+      "captured_at": "2026-09-13T08:52:50.197856+10:00",
+      "capture_path": "decoded_and_reencoded",
+      "settings": {
+        "camera": "0",
+        "zoom": 2,
+        "cx": 0.31,
+        "cy": 0.667,
+        "af": "off",
+        "focus_diopters": 3.13,
+        "focus_metres": 0.319,
+        "ae": "manual",
+        "exposure_ns": 25000000,
+        "exposure_human": "25.00ms (1\/40)",
+        "iso": 200,
+        "ev": 0,
+        "ae_lock": false,
+        "awb": "off",
+        "awb_lock": false,
+        "awb_gains_set": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "focus_box": [
+          0.409,
+          0.67,
+          0.045,
+          0.045
+        ],
+        "torch": 0,
+        "measure": false,
+        "shading_map": false,
+        "jpeg_quality": 92,
+        "rotate": 0,
+        "out_w": null,
+        "out_h": null,
+        "capture_path": "decoded_and_reencoded",
+        "preview_size": "1280x960",
+        "preview_size_requested": "1280x960",
+        "still_size": "max"
+      },
+      "orientation": {
+        "available": true,
+        "samples": 32,
+        "gravity": {
+          "x": 8.25,
+          "y": 0.57,
+          "z": 5.28
+        },
+        "tilt_degrees": 57.44,
+        "roll_degrees": 57.38,
+        "pitch_degrees": 6.21,
+        "aim": "tilted well off straight down (57.44 degrees from gravity)",
+        "measures": "the angle between the optical axis and gravity, averaged over 32 samples. It equals the angle to a flat subject only when the subject lies on a level surface.",
+        "ambient_lux": 80.51
+      },
+      "measured": {
+        "exposure_ns": 24971256,
+        "exposure_human": "24.97ms (1\/40)",
+        "iso": 199,
+        "focus_diopters": 3.12,
+        "focus_metres_approx": 0.32,
+        "af_state": "inactive",
+        "ae_state": 0,
+        "sensor_timestamp": 76685121313356,
+        "awb_gains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "colour_transform": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "pipeline": {
+        "noise_reduction": "high_quality",
+        "edge": "high_quality",
+        "tonemap": "fast",
+        "shading": "fast",
+        "hot_pixel": "fast",
+        "aberration": "off",
+        "ois": "on",
+        "tonemap_points": 64
+      },
+      "file": "focus-02-3.133d.jpg",
+      "step": 2,
+      "focus_diopters_asked": 3.133
+    },
+    {
+      "tool": "DeskCam",
+      "captured_at": "2026-09-13T08:52:50.894196+10:00",
+      "capture_path": "decoded_and_reencoded",
+      "settings": {
+        "camera": "0",
+        "zoom": 2,
+        "cx": 0.31,
+        "cy": 0.667,
+        "af": "off",
+        "focus_diopters": 3.4,
+        "focus_metres": 0.294,
+        "ae": "manual",
+        "exposure_ns": 25000000,
+        "exposure_human": "25.00ms (1\/40)",
+        "iso": 200,
+        "ev": 0,
+        "ae_lock": false,
+        "awb": "off",
+        "awb_lock": false,
+        "awb_gains_set": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "focus_box": [
+          0.409,
+          0.67,
+          0.045,
+          0.045
+        ],
+        "torch": 0,
+        "measure": false,
+        "shading_map": false,
+        "jpeg_quality": 92,
+        "rotate": 0,
+        "out_w": null,
+        "out_h": null,
+        "capture_path": "decoded_and_reencoded",
+        "preview_size": "1280x960",
+        "preview_size_requested": "1280x960",
+        "still_size": "max"
+      },
+      "orientation": {
+        "available": true,
+        "samples": 32,
+        "gravity": {
+          "x": 8.25,
+          "y": 0.57,
+          "z": 5.28
+        },
+        "tilt_degrees": 57.45,
+        "roll_degrees": 57.38,
+        "pitch_degrees": 6.21,
+        "aim": "tilted well off straight down (57.45 degrees from gravity)",
+        "measures": "the angle between the optical axis and gravity, averaged over 32 samples. It equals the angle to a flat subject only when the subject lies on a level surface.",
+        "ambient_lux": 80.51
+      },
+      "measured": {
+        "exposure_ns": 24971256,
+        "exposure_human": "24.97ms (1\/40)",
+        "iso": 199,
+        "focus_diopters": 3.4,
+        "focus_metres_approx": 0.294,
+        "af_state": "inactive",
+        "ae_state": 0,
+        "sensor_timestamp": 76685821708132,
+        "awb_gains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "colour_transform": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "pipeline": {
+        "noise_reduction": "high_quality",
+        "edge": "high_quality",
+        "tonemap": "fast",
+        "shading": "fast",
+        "hot_pixel": "fast",
+        "aberration": "off",
+        "ois": "on",
+        "tonemap_points": 64
+      },
+      "file": "focus-03-3.400d.jpg",
+      "step": 3,
+      "focus_diopters_asked": 3.4
+    },
+    {
+      "tool": "DeskCam",
+      "captured_at": "2026-09-13T08:52:51.613987+10:00",
+      "capture_path": "decoded_and_reencoded",
+      "settings": {
+        "camera": "0",
+        "zoom": 2,
+        "cx": 0.31,
+        "cy": 0.667,
+        "af": "off",
+        "focus_diopters": 3.67,
+        "focus_metres": 0.273,
+        "ae": "manual",
+        "exposure_ns": 25000000,
+        "exposure_human": "25.00ms (1\/40)",
+        "iso": 200,
+        "ev": 0,
+        "ae_lock": false,
+        "awb": "off",
+        "awb_lock": false,
+        "awb_gains_set": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "focus_box": [
+          0.409,
+          0.67,
+          0.045,
+          0.045
+        ],
+        "torch": 0,
+        "measure": false,
+        "shading_map": false,
+        "jpeg_quality": 92,
+        "rotate": 0,
+        "out_w": null,
+        "out_h": null,
+        "capture_path": "decoded_and_reencoded",
+        "preview_size": "1280x960",
+        "preview_size_requested": "1280x960",
+        "still_size": "max"
+      },
+      "orientation": {
+        "available": true,
+        "samples": 32,
+        "gravity": {
+          "x": 8.25,
+          "y": 0.57,
+          "z": 5.28
+        },
+        "tilt_degrees": 57.44,
+        "roll_degrees": 57.38,
+        "pitch_degrees": 6.2,
+        "aim": "tilted well off straight down (57.44 degrees from gravity)",
+        "measures": "the angle between the optical axis and gravity, averaged over 32 samples. It equals the angle to a flat subject only when the subject lies on a level surface.",
+        "ambient_lux": 80.51
+      },
+      "measured": {
+        "exposure_ns": 24971256,
+        "exposure_human": "24.97ms (1\/40)",
+        "iso": 199,
+        "focus_diopters": 3.68,
+        "focus_metres_approx": 0.272,
+        "af_state": "inactive",
+        "ae_state": 0,
+        "sensor_timestamp": 76686522102907,
+        "awb_gains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "colour_transform": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "pipeline": {
+        "noise_reduction": "high_quality",
+        "edge": "high_quality",
+        "tonemap": "fast",
+        "shading": "fast",
+        "hot_pixel": "fast",
+        "aberration": "off",
+        "ois": "on",
+        "tonemap_points": 64
+      },
+      "file": "focus-04-3.667d.jpg",
+      "step": 4,
+      "focus_diopters_asked": 3.667
+    },
+    {
+      "tool": "DeskCam",
+      "captured_at": "2026-09-13T08:52:52.302211+10:00",
+      "capture_path": "decoded_and_reencoded",
+      "settings": {
+        "camera": "0",
+        "zoom": 2,
+        "cx": 0.31,
+        "cy": 0.667,
+        "af": "off",
+        "focus_diopters": 3.93,
+        "focus_metres": 0.254,
+        "ae": "manual",
+        "exposure_ns": 25000000,
+        "exposure_human": "25.00ms (1\/40)",
+        "iso": 200,
+        "ev": 0,
+        "ae_lock": false,
+        "awb": "off",
+        "awb_lock": false,
+        "awb_gains_set": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "focus_box": [
+          0.409,
+          0.67,
+          0.045,
+          0.045
+        ],
+        "torch": 0,
+        "measure": false,
+        "shading_map": false,
+        "jpeg_quality": 92,
+        "rotate": 0,
+        "out_w": null,
+        "out_h": null,
+        "capture_path": "decoded_and_reencoded",
+        "preview_size": "1280x960",
+        "preview_size_requested": "1280x960",
+        "still_size": "max"
+      },
+      "orientation": {
+        "available": true,
+        "samples": 32,
+        "gravity": {
+          "x": 8.25,
+          "y": 0.57,
+          "z": 5.28
+        },
+        "tilt_degrees": 57.43,
+        "roll_degrees": 57.37,
+        "pitch_degrees": 6.19,
+        "aim": "tilted well off straight down (57.43 degrees from gravity)",
+        "measures": "the angle between the optical axis and gravity, averaged over 32 samples. It equals the angle to a flat subject only when the subject lies on a level surface.",
+        "ambient_lux": 80.51
+      },
+      "measured": {
+        "exposure_ns": 24971256,
+        "exposure_human": "24.97ms (1\/40)",
+        "iso": 199,
+        "focus_diopters": 3.92,
+        "focus_metres_approx": 0.255,
+        "af_state": "inactive",
+        "ae_state": 0,
+        "sensor_timestamp": 76687222497682,
+        "awb_gains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "colour_transform": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "pipeline": {
+        "noise_reduction": "high_quality",
+        "edge": "high_quality",
+        "tonemap": "fast",
+        "shading": "fast",
+        "hot_pixel": "fast",
+        "aberration": "off",
+        "ois": "on",
+        "tonemap_points": 64
+      },
+      "file": "focus-05-3.933d.jpg",
+      "step": 5,
+      "focus_diopters_asked": 3.933
+    },
+    {
+      "tool": "DeskCam",
+      "captured_at": "2026-09-13T08:52:53.013561+10:00",
+      "capture_path": "decoded_and_reencoded",
+      "settings": {
+        "camera": "0",
+        "zoom": 2,
+        "cx": 0.31,
+        "cy": 0.667,
+        "af": "off",
+        "focus_diopters": 4.2,
+        "focus_metres": 0.238,
+        "ae": "manual",
+        "exposure_ns": 25000000,
+        "exposure_human": "25.00ms (1\/40)",
+        "iso": 200,
+        "ev": 0,
+        "ae_lock": false,
+        "awb": "off",
+        "awb_lock": false,
+        "awb_gains_set": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "focus_box": [
+          0.409,
+          0.67,
+          0.045,
+          0.045
+        ],
+        "torch": 0,
+        "measure": false,
+        "shading_map": false,
+        "jpeg_quality": 92,
+        "rotate": 0,
+        "out_w": null,
+        "out_h": null,
+        "capture_path": "decoded_and_reencoded",
+        "preview_size": "1280x960",
+        "preview_size_requested": "1280x960",
+        "still_size": "max"
+      },
+      "orientation": {
+        "available": true,
+        "samples": 32,
+        "gravity": {
+          "x": 8.25,
+          "y": 0.57,
+          "z": 5.28
+        },
+        "tilt_degrees": 57.43,
+        "roll_degrees": 57.37,
+        "pitch_degrees": 6.19,
+        "aim": "tilted well off straight down (57.43 degrees from gravity)",
+        "measures": "the angle between the optical axis and gravity, averaged over 32 samples. It equals the angle to a flat subject only when the subject lies on a level surface.",
+        "ambient_lux": 80.51
+      },
+      "measured": {
+        "exposure_ns": 24971256,
+        "exposure_human": "24.97ms (1\/40)",
+        "iso": 199,
+        "focus_diopters": 4.19,
+        "focus_metres_approx": 0.239,
+        "af_state": "inactive",
+        "ae_state": 0,
+        "sensor_timestamp": 76687922892458,
+        "awb_gains": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "colour_transform": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "pipeline": {
+        "noise_reduction": "high_quality",
+        "edge": "high_quality",
+        "tonemap": "fast",
+        "shading": "fast",
+        "hot_pixel": "fast",
+        "aberration": "off",
+        "ois": "on",
+        "tonemap_points": 64
+      },
+      "file": "focus-06-4.200d.jpg",
+      "step": 6,
+      "focus_diopters_asked": 4.2
+    }
+  ]
+}

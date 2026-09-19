@@ -1,0 +1,96 @@
+{
+  "bytes": 2049200,
+  "capture_path": "camera_jpeg",
+  "captured_at": "2026-09-12T23:21:13.332669+10:00",
+  "from": "the capture itself",
+  "height_px": 3024,
+  "image": "precision-wide.jpg",
+  "measured": {
+    "ae_state": 1,
+    "af_state": "focused-locked",
+    "awb_gains": [
+      1.688,
+      1,
+      1,
+      2.039
+    ],
+    "colour_transform": [
+      1.398,
+      -0.223,
+      -0.176,
+      -0.207,
+      1.426,
+      -0.219,
+      0.02,
+      -0.598,
+      1.574
+    ],
+    "exposure_human": "30.02ms (1/33)",
+    "exposure_ns": 30016818,
+    "focus_diopters": 3.2,
+    "focus_metres_approx": 0.312,
+    "iso": 144,
+    "sensor_timestamp": 42387418921633
+  },
+  "orientation": {
+    "aim": "straight down, square to a level surface (0.33 degrees from gravity)",
+    "ambient_lux": 105.1,
+    "available": true,
+    "gravity": {
+      "x": -0.04,
+      "y": -0.04,
+      "z": 9.81
+    },
+    "measures": "the angle between the optical axis and gravity, averaged over 32 samples. It equals the angle to a flat subject only when the subject lies on a level surface.",
+    "pitch_degrees": -0.23,
+    "roll_degrees": -0.25,
+    "samples": 32,
+    "tilt_degrees": 0.33
+  },
+  "pipeline": {
+    "aberration": "off",
+    "edge": "high_quality",
+    "hot_pixel": "fast",
+    "noise_reduction": "high_quality",
+    "ois": "on",
+    "shading": "fast",
+    "tonemap": "fast",
+    "tonemap_points": 64
+  },
+  "settings": {
+    "ae": "auto",
+    "ae_lock": false,
+    "af": "continuous",
+    "awb": "auto",
+    "awb_gains_set": null,
+    "awb_lock": false,
+    "camera": "0",
+    "capture_path": "camera_jpeg",
+    "cx": 0.5,
+    "cy": 0.5,
+    "ev": 0,
+    "exposure_ns": null,
+    "focus_box": [
+      0.922,
+      0.521,
+      0.09,
+      0.09
+    ],
+    "focus_diopters": null,
+    "iso": null,
+    "jpeg_quality": 92,
+    "measure": false,
+    "out_h": null,
+    "out_w": null,
+    "preview_size": "1280x960",
+    "preview_size_requested": "1280x960",
+    "rotate": 0,
+    "shading_map": false,
+    "still_size": "max",
+    "torch": 18,
+    "zoom": 1
+  },
+  "target": "http://192.168.86.123:8080",
+  "tool": "DeskCam",
+  "width_px": 4032
+}

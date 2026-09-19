@@ -1,0 +1,690 @@
+<title>XYZ Arm Mk1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+  :root{
+    --paper:#EFF2F5;
+    --surface:#FFFFFF;
+    --surface-2:#E6EBEF;
+    --ink:#161F27;
+    --ink-2:#4C5A65;
+    --ink-3:#7E8B95;
+    --rule:#CFD7DE;
+    --rule-2:#AEB9C2;
+    --markup:#BE2C1B;
+    --dim:#16607F;
+    --shadow:rgba(22,31,39,.07);
+
+    --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+    --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+
+    --t-display:clamp(2rem,5.5vw,3rem);
+    --t-h2:clamp(1.3rem,3.2vw,1.65rem);
+    --t-h3:1.02rem;
+    --t-label:.7rem;
+    --t-small:.85rem;
+
+    --sheet:980px;
+    --measure:67ch;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#10161B;
+      --surface:#182128;
+      --surface-2:#1F2A33;
+      --ink:#E3EAEF;
+      --ink-2:#A2B0BA;
+      --ink-3:#72808B;
+      --rule:#2A363F;
+      --rule-2:#3B4A55;
+      --markup:#FF7361;
+      --dim:#5FBCE0;
+      --shadow:rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#10161B;
+    --surface:#182128;
+    --surface-2:#1F2A33;
+    --ink:#E3EAEF;
+    --ink-2:#A2B0BA;
+    --ink-3:#72808B;
+    --rule:#2A363F;
+    --rule-2:#3B4A55;
+    --markup:#FF7361;
+    --dim:#5FBCE0;
+    --shadow:rgba(0,0,0,.4);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:1rem;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sheet{
+    max-width:var(--sheet);
+    margin:0 auto;
+    padding-inline:24px;
+    padding-block:0 72px;
+  }
+  p,li{max-width:var(--measure)}
+
+  /* ---- title block ---- */
+  .block{
+    border:1.5px solid var(--rule-2);
+    background:var(--surface);
+    margin-block:40px 56px;
+  }
+  .block-head{
+    padding:26px 24px 22px;
+    border-bottom:1.5px solid var(--rule-2);
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:var(--t-label);
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+  }
+  h1{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:var(--t-display);
+    line-height:1.02;
+    letter-spacing:-.02em;
+    margin:.28em 0 .3em;
+    text-wrap:balance;
+  }
+  .standfirst{
+    font-size:1.06rem;
+    color:var(--ink-2);
+    margin:0;
+  }
+  .fields{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  }
+  .field{
+    padding:12px 16px 14px;
+    border-right:1px solid var(--rule);
+    border-top:1px solid var(--rule);
+  }
+  .field:first-child{border-top:none}
+  .field dt{
+    font-family:var(--mono);
+    font-size:var(--t-label);
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+    margin-bottom:3px;
+  }
+  .field dd{
+    margin:0;
+    font-family:var(--mono);
+    font-size:.9rem;
+    font-weight:500;
+    color:var(--ink);
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* ---- sections ---- */
+  section{margin-block:0 52px}
+  h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:var(--t-h2);
+    letter-spacing:-.012em;
+    line-height:1.2;
+    margin:0 0 4px;
+    text-wrap:balance;
+  }
+  .sec-head{
+    border-top:1.5px solid var(--rule-2);
+    padding-top:14px;
+    margin-bottom:20px;
+  }
+  h3{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:var(--t-h3);
+    letter-spacing:.005em;
+    margin:30px 0 6px;
+  }
+  strong{font-weight:600}
+  code,.num{
+    font-family:var(--mono);
+    font-size:.9em;
+    font-variant-numeric:tabular-nums;
+  }
+  .num{color:var(--dim);font-weight:500}
+  a{color:var(--dim)}
+
+  /* ---- decisions ---- */
+  .decisions{
+    display:grid;
+    gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+    margin:0;
+  }
+  .decision{
+    background:var(--surface);
+    padding:16px 18px 18px;
+  }
+  .decision .eyebrow{display:block;margin-bottom:6px}
+  .decision .eyebrow.settled{color:var(--dim)}
+  .decision .eyebrow.open{color:var(--markup)}
+  .decision h3{margin:0 0 4px;font-size:1rem}
+  .decision p{margin:0;color:var(--ink-2);font-size:.95rem;max-width:64ch}
+
+  /* ---- tables ---- */
+  .tw{overflow-x:auto;margin:20px 0}
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:440px;
+    font-family:var(--mono);
+    font-size:.87rem;
+    font-variant-numeric:tabular-nums;
+  }
+  caption{
+    text-align:left;
+    font-family:var(--mono);
+    font-size:var(--t-label);
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+    padding-bottom:9px;
+  }
+  th,td{
+    text-align:left;
+    padding:8px 14px 8px 0;
+    border-bottom:1px solid var(--rule);
+  }
+  thead th{
+    border-bottom:1.5px solid var(--rule-2);
+    font-weight:600;
+    font-size:var(--t-label);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-3);
+  }
+  td.n,th.n{text-align:right;padding-right:0}
+  tfoot td{
+    border-bottom:none;
+    border-top:1.5px solid var(--rule-2);
+    font-weight:600;
+  }
+  tr.pick td{color:var(--dim);font-weight:600}
+  tr.muted td{color:var(--ink-3)}
+
+  /* ---- figures ---- */
+  figure{
+    margin:26px 0;
+    padding:20px 20px 16px;
+    background:var(--surface);
+    border:1px solid var(--rule);
+  }
+  figure svg{
+    display:block;
+    width:100%;
+    max-width:100%;
+    height:auto;
+    color:var(--ink-2);
+  }
+  figcaption{
+    margin-top:14px;
+    padding-top:12px;
+    border-top:1px solid var(--rule);
+    font-size:var(--t-small);
+    color:var(--ink-3);
+    max-width:var(--measure);
+  }
+  .svg-label{font-family:"IBM Plex Mono",monospace;font-size:12px;fill:var(--ink-2)}
+  .svg-label.sm{font-size:10.5px;fill:var(--ink-3)}
+  .svg-label.hd{font-size:12px;fill:var(--ink);font-weight:600}
+  .svg-label.mk{fill:var(--markup);font-weight:500}
+  .svg-label.dm{fill:var(--dim);font-weight:500}
+  .st{stroke:currentColor;fill:none;stroke-width:1.5}
+  .st-t{stroke:currentColor;fill:none;stroke-width:1}
+  .st-mk{stroke:var(--markup);fill:none;stroke-width:1.75}
+  .st-dm{stroke:var(--dim);fill:none;stroke-width:1.5}
+  .gh{stroke:currentColor;fill:none;stroke-width:1.25;stroke-dasharray:5 4;opacity:.65}
+
+  /* ---- callout ---- */
+  .note{
+    border-left:3px solid var(--markup);
+    background:var(--surface);
+    padding:14px 18px;
+    margin:22px 0;
+  }
+  .note p{margin:0;color:var(--ink-2);font-size:.95rem}
+  .note .eyebrow{display:block;color:var(--markup);margin-bottom:5px}
+
+  ul.tight{padding-left:1.15em;margin:10px 0}
+  ul.tight li{margin-bottom:7px}
+
+  footer{
+    border-top:1.5px solid var(--rule-2);
+    padding-top:16px;
+    font-family:var(--mono);
+    font-size:var(--t-small);
+    color:var(--ink-3);
+  }
+  footer p{max-width:var(--measure)}
+
+  @media (max-width:560px){
+    .field{border-right:none}
+  }
+</style>
+
+<div class="sheet">
+
+  <div class="block">
+    <div class="block-head">
+      <span class="eyebrow">Design note · bench instrument</span>
+      <h1>XYZ Arm Mk1</h1>
+      <p class="standfirst">A counterweighted camera gantry for the DeskCam rig — Dyson CSYS geometry, 2020 V‑slot, hand‑positioned and locked for the shot.</p>
+    </div>
+    <dl class="fields">
+      <div class="field"><dt>Z spine</dt><dd>2020 V-slot, 500 mm</dd></div>
+      <div class="field"><dt>Gantry</dt><dd>2020 V-slot, 500 mm</dd></div>
+      <div class="field"><dt>Joint</dt><dd>4× V-wheel plate</dd></div>
+      <div class="field"><dt>Balance member</dt><dd>PE braid, 0.37 mm</dd></div>
+      <div class="field"><dt>Mounting</dt><dd>clamped / screwed</dd></div>
+      <div class="field"><dt>Payload</dt><dd>phone + Olight</dd></div>
+      <div class="field"><dt>Z drive</dt><dd>manual + lock</dd></div>
+      <div class="field"><dt>Camera</dt><dd>Pixel 6a, 12.2 MP</dd></div>
+      <div class="field"><dt>Head</dt><dd>fixed flat, no tilt</dd></div>
+      <div class="field"><dt>Status</dt><dd>design, not built</dd></div>
+    </dl>
+  </div>
+
+  <section>
+    <div class="sec-head"><h2>What it is</h2></div>
+    <p>A vertical 2020 spine carries a horizontal 2020 gantry on a four-wheel plate. A braided line over a pulley at the top of the spine balances the whole moving assembly, so the gantry is near-weightless and stays where you put it — the Dyson CSYS behaviour. The phone lies flat along the gantry, screen up, with only the camera module looking down. A thumbscrew locks the plate before each capture.</p>
+    <p>The design target is not rigidity. Because the mat carries ArUco fiducials and <code>deskcam scale</code> reads pixels-per-millimetre out of the picture itself, static deflection is absorbed by the pose solve. What is <em>not</em> absorbed is movement during the exposure or drift between calibration and shot. So the rig is designed for <strong>stability, not stiffness</strong> — which is why the lock matters more than the wall thickness.</p>
+
+    <figure>
+      <svg viewBox="0 0 660 436" role="img" aria-label="Side elevation of the rig: vertical 2020 spine with pulley at top, counterweight hanging behind it, four-wheel plate carrying a horizontal gantry, phone lying flat along the gantry with the camera module protruding downward and an Olight on the carriage.">
+        <!-- desk -->
+        <line class="st" x1="24" y1="398" x2="636" y2="398"/>
+        <line class="st-t" x1="24" y1="403" x2="636" y2="403" opacity=".5"/>
+        <text class="svg-label sm" x="24" y="418">desk / calibration mat</text>
+        <!-- base -->
+        <rect class="st" x="62" y="382" width="92" height="16"/>
+        <!-- spine -->
+        <rect class="st" x="96" y="46" width="20" height="336"/>
+        <line class="st-t" x1="106" y1="46" x2="106" y2="382" stroke-dasharray="6 5" opacity=".45"/>
+        <text class="svg-label" x="40" y="352">Z spine</text>
+        <text class="svg-label sm" x="40" y="368">2020 × 500</text>
+        <!-- pulley -->
+        <circle class="st" cx="106" cy="32" r="13"/>
+        <circle cx="106" cy="32" r="2.5" fill="currentColor"/>
+        <text class="svg-label sm" x="126" y="26">pulley + keeper</text>
+        <!-- line: left run to plate, right run to weight -->
+        <path class="st-mk" d="M93 32 L93 214"/>
+        <path class="st-mk" d="M119 32 L119 120"/>
+        <path class="st-mk" d="M93 32 A13 13 0 0 1 119 32"/>
+        <text class="svg-label mk" x="128" y="176">PE braid 0.37</text>
+        <!-- counterweight (behind spine) -->
+        <rect class="gh" x="88" y="120" width="62" height="76"/>
+        <text class="svg-label sm" x="158" y="146">counterweight</text>
+        <text class="svg-label sm" x="158" y="162">≈1.05 kg, adjustable</text>
+        <text class="svg-label sm" x="158" y="178">rides behind the spine</text>
+        <!-- wheel plate -->
+        <rect class="st" x="90" y="214" width="44" height="104"/>
+        <circle class="st" cx="96" cy="228" r="6.5"/>
+        <circle class="st" cx="116" cy="228" r="6.5"/>
+        <circle class="st" cx="96" cy="304" r="6.5"/>
+        <circle class="st" cx="116" cy="304" r="6.5"/>
+        <!-- d dimension -->
+        <line class="st-dm" x1="66" y1="228" x2="66" y2="304"/>
+        <line class="st-dm" x1="61" y1="228" x2="71" y2="228"/>
+        <line class="st-dm" x1="61" y1="304" x2="71" y2="304"/>
+        <text class="svg-label dm" x="30" y="270">d</text>
+        <!-- lock -->
+        <circle class="st-mk" cx="140" cy="266" r="5"/>
+        <line class="st-mk" x1="134" y1="266" x2="126" y2="266"/>
+        <text class="svg-label mk" x="150" y="270">lock</text>
+        <!-- gantry -->
+        <rect class="st" x="134" y="252" width="446" height="20"/>
+        <text class="svg-label" x="300" y="243">gantry — 2020 × 500</text>
+        <!-- carriage -->
+        <rect class="st" x="398" y="244" width="86" height="36"/>
+        <text class="svg-label sm" x="398" y="236">carriage</text>
+        <!-- phone -->
+        <rect class="st" x="356" y="280" width="172" height="13"/>
+        <text class="svg-label" x="356" y="308">phone, screen up</text>
+        <!-- camera bump -->
+        <rect class="st-mk" x="428" y="293" width="26" height="9"/>
+        <text class="svg-label mk" x="462" y="302">camera</text>
+        <!-- fov cone -->
+        <path class="st-dm" d="M441 302 L366 398" stroke-dasharray="4 4"/>
+        <path class="st-dm" d="M441 302 L516 398" stroke-dasharray="4 4"/>
+        <!-- steel strip -->
+        <rect class="st-dm" x="134" y="272" width="446" height="5"/>
+        <text class="svg-label dm" x="214" y="266">steel strip — magnet track</text>
+        <!-- olight, magneted well clear of the camera -->
+        <rect class="st" x="176" y="277" width="38" height="15"/>
+        <text class="svg-label sm" x="176" y="308">Olight</text>
+        <path class="st-t" d="M206 294 L428 396" stroke-dasharray="3 4" opacity=".75"/>
+        <path class="st-t" d="M212 294 L462 396" stroke-dasharray="3 4" opacity=".45"/>
+      </svg>
+      <figcaption>Side elevation. The counterweight and its line run behind the spine; the camera module is the lowest point on the assembly, so nothing of the rig sits inside the lens cone. The Olight rides on the carriage, not the gantry end.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Decisions</h2></div>
+    <div class="decisions">
+      <div class="decision">
+        <span class="eyebrow settled">Settled</span>
+        <h3>Phone runs on battery, no tether to the frame</h3>
+        <p>A USB-C cable dragging on a moving gantry applies 0.5–2 N that varies with height, so a counterweight could only ever be correct at one position. Cutting it makes a single counterweight correct across the whole travel. Battery-only also runs <em>cooler</em> than charging, which matters — the noise floor rises with sensor temperature.</p>
+      </div>
+      <div class="decision">
+        <span class="eyebrow settled">Settled</span>
+        <h3>Phone lies flat along the gantry, screen up</h3>
+        <p>Camera faces the mat, screen stays readable and tappable from above. The camera bump becomes the lowest point, so the extrusion never clips the cone. Cradle is an open U gripping the two long edges only — nothing under the camera to crush it.</p>
+      </div>
+      <div class="decision">
+        <span class="eyebrow settled">Settled</span>
+        <h3>Clamp the phone back to the extrusion through a thermal pad</h3>
+        <p>500 mm of 6063 is roughly 230 g at 900 J/kg·K — about 207 J/K of thermal mass sitting exactly where the heat is. A £2 pad turns the gantry into a heatsink and directly attacks the <code>HOT severe</code> throttling that degrades long sessions.</p>
+      </div>
+      <div class="decision">
+        <span class="eyebrow settled">Settled</span>
+        <h3>Camera sits flat — no tilt, no roll</h3>
+        <p>Not a compromise; the right call for an instrument. An articulated head has an alignment error that changes every time it is touched. A fixed head has a constant one, measured once and rectified by the fiducials from then on. It also keeps the rig a pure XYZ translation stage, which is the premise. Put the one-time adjustment at the spine's base instead — three levelling screws or shims, set plumb once, never touched in use.</p>
+      </div>
+      <div class="decision">
+        <span class="eyebrow settled">Settled</span>
+        <h3>Hand-positioned, with a lock</h3>
+        <p>Counterweight for easy positioning, thumbscrew for the shot. The lock deletes the vibration problem rather than managing it. Because the axis is balanced the lock holds almost nothing — which is good, because it must not change the geometry when it bites.</p>
+      </div>
+      <div class="decision">
+        <span class="eyebrow settled">Settled</span>
+        <h3>Light magnets to a steel strip under the gantry</h3>
+        <p>A 16 × 1.5 mm mild-steel strip taped or screwed along the gantry's underside. The Olight's tailcap grabs anywhere on it, so the light slides to any offset by hand — no arm, no bracket, and the full 500 mm of reach is available for a genuinely shallow grazing angle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Mass and balance</h2></div>
+    <p>Every figure below follows from this budget, so it is worth keeping honest as parts are chosen. The counterweight is set to match the total, then deliberately run about 5 % light.</p>
+
+    <div class="tw">
+      <table>
+        <caption>Moving mass budget</caption>
+        <thead><tr><th>Item</th><th class="n">Mass</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>Gantry, 2020 × 500</td><td class="n">231 g</td><td>463 g/m, part 150-LP</td></tr>
+          <tr><td>Wheel plate + 4 wheels + hardware</td><td class="n">180 g</td><td>3 mm alu</td></tr>
+          <tr><td>Carriage + phone</td><td class="n">280 g</td><td>Pixel 6a, 178 g</td></tr>
+          <tr><td>Olight</td><td class="n">100 g</td><td>Baton-class</td></tr>
+          <tr><td>Steel strip, 16 × 1.5 × 500</td><td class="n">88 g</td><td>magnet track</td></tr>
+          <tr class="muted"><td>Power bank</td><td class="n">200 g</td><td>optional, long sessions</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td class="n">1078 g</td><td>878 g without bank</td></tr></tfoot>
+      </table>
+    </div>
+
+    <p>At <span class="num">1.02 kg</span> hanging, the braid sees about <span class="num">10.0 N</span> &mdash; roughly <span class="num">7 %</span> of a realistic break load for 0.37 mm eight-strand, nearer 15 kg than the 50 lb on the label. At that fraction strength is not the question; creep is.</p>
+    <p><strong>Creep costs travel, not balance.</strong> Tension is set by the hanging mass, and that does not change as the line lengthens &mdash; so the gantry stays balanced however much it stretches. What moves is where the ends of travel fall: the counterweight bottoms out sooner and the top of the stroke goes first. The adjuster restores it in seconds. Budget a tweak every few months, not a rebuild.</p>
+
+    <h3>Run it 5 % light, on purpose</h3>
+    <p>A perfectly balanced axis creeps and, once motorised, leaves the leadscrew nut floating between flanks — the worst case for backlash. A slight downward bias settles the manual rig predictably and keeps the nut loaded on one flank later. Make the weight a stack of washers or a tube you add shot to.</p>
+
+    <div class="note">
+      <span class="eyebrow">Constraint found</span>
+      <p>Superseded by the mounting decision. While the rig stood on its own base the weight had to fit <em>alongside</em> the spine, which forced a long slim slab and ruled out steel shot on density. Hanging it below the desk removes the envelope entirely: any shape, and steel shot is back.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>The governing constraint</h2></div>
+    <p>Not the line, and not the wheels' load rating. It is the tipping moment where the gantry meets the spine. With the carriage at 400 mm the contributions total about <span class="num">2.4 N·m</span> with the light out at the far end, and the plate can only resist that as a force couple between its two wheel pairs. Vertical wheel spacing <code>d</code> sets the load — and eats travel.</p>
+
+    <figure>
+      <svg viewBox="0 0 660 300" role="img" aria-label="Diagram showing the cantilever moment from the gantry resolving into a force couple at the two wheel pairs of the plate, separated by distance d, with wheel force equal to moment divided by d.">
+        <!-- spine -->
+        <rect class="st" x="70" y="20" width="20" height="260"/>
+        <!-- plate -->
+        <rect class="st" x="64" y="70" width="44" height="150"/>
+        <circle class="st" cx="70" cy="88" r="7"/>
+        <circle class="st" cx="90" cy="88" r="7"/>
+        <circle class="st" cx="70" cy="202" r="7"/>
+        <circle class="st" cx="90" cy="202" r="7"/>
+        <!-- couple arrows -->
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <polygon points="0,1 10,5 0,9" fill="var(--markup)"/>
+          </marker>
+          <marker id="ad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <polygon points="0,1 10,5 0,9" fill="var(--dim)"/>
+          </marker>
+        </defs>
+        <line class="st-mk" x1="40" y1="88" x2="14" y2="88" marker-end="url(#ar)"/>
+        <line class="st-mk" x1="118" y1="202" x2="144" y2="202" marker-end="url(#ar)"/>
+        <text class="svg-label mk" x="8" y="76">F</text>
+        <text class="svg-label mk" x="138" y="192">F</text>
+        <!-- d dimension -->
+        <line class="st-dm" x1="176" y1="88" x2="176" y2="202"/>
+        <line class="st-dm" x1="171" y1="88" x2="181" y2="88"/>
+        <line class="st-dm" x1="171" y1="202" x2="181" y2="202"/>
+        <text class="svg-label dm" x="186" y="150">d</text>
+        <!-- gantry -->
+        <rect class="st" x="108" y="136" width="452" height="18"/>
+        <line class="st-t" x1="108" y1="145" x2="560" y2="145" stroke-dasharray="5 5" opacity=".4"/>
+        <!-- load -->
+        <line class="st-mk" x1="470" y1="160" x2="470" y2="212" marker-end="url(#ar)"/>
+        <text class="svg-label mk" x="482" y="196">W</text>
+        <text class="svg-label sm" x="482" y="212">carriage</text>
+        <!-- L dimension -->
+        <line class="st-dm" x1="80" y1="252" x2="470" y2="252"/>
+        <line class="st-dm" x1="80" y1="247" x2="80" y2="257"/>
+        <line class="st-dm" x1="470" y1="247" x2="470" y2="257"/>
+        <text class="svg-label dm" x="258" y="270">L = 400 mm</text>
+        <!-- formula -->
+        <text class="svg-label hd" x="228" y="46">M ≈ 2.4 N·m</text>
+        <text class="svg-label" x="228" y="66">F = M / d</text>
+        <text class="svg-label sm" x="228" y="86">wider d → lighter wheels, less travel</text>
+      </svg>
+      <figcaption>The cantilever moment resolves into equal and opposite forces at the two wheel pairs. Doubling the wheel spacing halves the wheel load — but every millimetre of spacing is a millimetre of Z travel gone.</figcaption>
+    </figure>
+
+    <div class="tw">
+      <table>
+        <caption>Wheel spacing trade</caption>
+        <thead><tr><th>Spacing d</th><th class="n">Force per pair</th><th class="n">Usable Z travel</th></tr></thead>
+        <tbody>
+          <tr><td>100 mm</td><td class="n">24.0 N</td><td class="n">360 mm</td></tr>
+          <tr class="pick"><td>150 mm</td><td class="n">16.0 N</td><td class="n">310 mm</td></tr>
+          <tr><td>200 mm</td><td class="n">12.0 N</td><td class="n">260 mm</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>150 mm is the pick.</strong> It keeps wheel load comfortable for polycarbonate wheels and still leaves 310 mm of travel — which, as the working band below shows, is more than the optics need.</p>
+
+    <div class="note">
+      <span class="eyebrow">Watch this</span>
+      <p>With no tilt or roll adjustment in the head, the gantry-to-plate joint has to be square by construction — there is nothing to dial out afterwards. Use two bolts <em>spaced along</em> the extrusion, never two at one station in a single slot, which leaves the joint free to roll about the bolt axis and tips the camera sideways.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Why the light goes on the carriage</h2></div>
+    <p>The phone's own torch is coaxial with the lens — it shows colour but not shape. An offset light gives oblique illumination that reveals topography, which is what you want on solder joints and silkscreen. The steel strip makes that offset a free choice along the whole gantry, and the reach is the point: a short arm on the carriage tops out near 100 mm, a moderate angle at best. The strip reaches 400 mm.</p>
+
+    <figure>
+      <svg viewBox="0 0 660 250" role="img" aria-label="Comparison of two lighting arrangements. With the light fixed at the gantry end, the illumination angle changes as the camera carriage moves. With the light mounted on the carriage, the angle stays identical at every position.">
+        <!-- panel A -->
+        <text class="svg-label hd" x="14" y="18">Light fixed at the gantry end</text>
+        <line class="st" x1="14" y1="40" x2="304" y2="40"/>
+        <line class="st" x1="14" y1="196" x2="304" y2="196"/>
+        <!-- fixed light -->
+        <rect class="st" x="276" y="30" width="24" height="12"/>
+        <text class="svg-label sm" x="266" y="24">light</text>
+        <!-- camera 1 -->
+        <rect class="st-mk" x="76" y="32" width="18" height="10"/>
+        <path class="st-mk" d="M85 42 L85 196" stroke-dasharray="4 4"/>
+        <path class="st-t" d="M288 44 L85 196"/>
+        <text class="svg-label mk" x="60" y="216">Θ₁</text>
+        <!-- camera 2 -->
+        <rect class="st-mk" x="176" y="32" width="18" height="10"/>
+        <path class="st-mk" d="M185 42 L185 196" stroke-dasharray="4 4"/>
+        <path class="st-t" d="M288 44 L185 196"/>
+        <text class="svg-label mk" x="160" y="216">Θ₂</text>
+        <text class="svg-label mk" x="14" y="238">Θ₁ ≠ Θ₂ — captures not comparable</text>
+        <!-- divider -->
+        <line class="st-t" x1="330" y1="8" x2="330" y2="242" opacity=".35"/>
+        <!-- panel B -->
+        <text class="svg-label hd" x="356" y="18">Light on the carriage</text>
+        <line class="st" x1="356" y1="40" x2="646" y2="40"/>
+        <line class="st" x1="356" y1="196" x2="646" y2="196"/>
+        <!-- pair 1 -->
+        <rect class="st-mk" x="396" y="32" width="18" height="10"/>
+        <rect class="st" x="440" y="30" width="24" height="12"/>
+        <path class="st-mk" d="M405 42 L405 196" stroke-dasharray="4 4"/>
+        <path class="st-dm" d="M452 44 L405 196"/>
+        <text class="svg-label dm" x="382" y="216">Θ</text>
+        <!-- pair 2 -->
+        <rect class="st-mk" x="536" y="32" width="18" height="10"/>
+        <rect class="st" x="580" y="30" width="24" height="12"/>
+        <path class="st-mk" d="M545 42 L545 196" stroke-dasharray="4 4"/>
+        <path class="st-dm" d="M592 44 L545 196"/>
+        <text class="svg-label dm" x="522" y="216">Θ</text>
+        <text class="svg-label dm" x="356" y="238">Θ invariant at every position</text>
+      </svg>
+      <figcaption>Why position has to be deliberate. A light left parked in one place changes its angle every time the camera moves, so two captures of the same part stop being comparable. The strip does not fix this by itself — it makes the fix free.</figcaption>
+    </figure>
+
+    <p>So the strip buys reach, and the discipline is to slide the light along with the carriage rather than leave it parked. Mark the strip once and the angle becomes repeatable by eye.</p>
+
+    <div class="tw">
+      <table>
+        <caption>Illumination angle at 150 mm camera height</caption>
+        <thead><tr><th>Light offset</th><th class="n">From vertical</th><th class="n">Above surface</th><th>Reads as</th></tr></thead>
+        <tbody>
+          <tr><td>100 mm</td><td class="n">34°</td><td class="n">56°</td><td>mild modelling</td></tr>
+          <tr><td>200 mm</td><td class="n">53°</td><td class="n">37°</td><td>clear relief</td></tr>
+          <tr class="pick"><td>300 mm</td><td class="n">63°</td><td class="n">27°</td><td>strong raking</td></tr>
+          <tr><td>400 mm</td><td class="n">69°</td><td class="n">21°</td><td>long shadows, texture</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <span class="eyebrow">Two gotchas</span>
+      <p><strong>Buy carbon steel, not stainless.</strong> 304 and 316 are austenitic and effectively non-magnetic, so a stainless rule may not hold the light at all. Take a magnet to the shop. <strong>And keep the magnet off the camera end.</strong> The 6a&rsquo;s main camera is confirmed OIS, and both OIS and the focus actuator are voice coils working against magnets, so a neodymium tailcap parked beside the module can make focus hunt. Past about 100 mm it is a non-issue — and every useful raking angle above already puts it further than that.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>The working band</h2></div>
+    <p>The Pixel 6a main camera is a 1/2.55″ sensor, 5.645 × 4.234 mm at 1.4 µm, behind a 4.40 mm lens — so <span class="num">65.4°</span> horizontal, <span class="num">51.4°</span> vertical, and a frame width of <span class="num">1.283 × height</span>. Derived from the sensor rather than estimated, and they confirm the 500 mm spine.</p>
+
+    <figure>
+      <svg viewBox="0 0 620 320" role="img" aria-label="Scale diagram of camera field of view at three heights above the mat: 100 mm covers 128 mm, 250 mm covers 321 mm which spans A4 landscape, and 400 mm covers 513 mm.">
+        <line class="st" x1="60" y1="276" x2="596" y2="276"/>
+        <!-- A4 mat -->
+        <rect class="st-dm" x="182" y="268" width="212" height="8"/>
+        <text class="svg-label dm" x="240" y="296">A4 mat, 297 mm</text>
+        <!-- height axis -->
+        <line class="st-t" x1="60" y1="276" x2="60" y2="40"/>
+        <!-- h = 100 -->
+        <line class="st-t" x1="56" y1="230" x2="64" y2="230"/>
+        <text class="svg-label sm" x="16" y="234">100</text>
+        <rect class="st-mk" x="278" y="222" width="20" height="9"/>
+        <path class="st-mk" d="M288 231 L243 276 M288 231 L333 276"/>
+        <text class="svg-label mk" x="344" y="252">128 mm wide</text>
+        <!-- h = 250 -->
+        <line class="st-t" x1="56" y1="146" x2="64" y2="146"/>
+        <text class="svg-label sm" x="16" y="150">250</text>
+        <rect class="st" x="278" y="138" width="20" height="9"/>
+        <path class="st-t" d="M288 147 L175 276 M288 147 L401 276"/>
+        <text class="svg-label" x="412" y="168">321 mm — covers A4</text>
+        <!-- h = 400 -->
+        <line class="st-t" x1="56" y1="62" x2="64" y2="62"/>
+        <text class="svg-label sm" x="16" y="66">400</text>
+        <rect class="st" x="278" y="54" width="20" height="9"/>
+        <path class="gh" d="M288 63 L107 276 M288 63 L469 276"/>
+        <text class="svg-label sm" x="480" y="84">513 mm</text>
+        <text class="svg-label sm" x="16" y="300">mm</text>
+      </svg>
+      <figcaption>Field width against camera height. Detail work sits near the 98 mm close-focus limit; framing the whole mat needs 232 mm. The useful band is therefore roughly 100–300 mm, which 310 mm of travel covers with room to spare.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Deflection, and why it doesn't matter much</h2></div>
+    <p>The section is no longer assumed. Integrating OpenBuilds' own DXF gives <span class="num">171.4 mm&sup2;</span> of aluminium and <span class="num">I<sub>x</sub> = I<sub>y</sub> = 0.699 cm⁴</span>, which checks out at <span class="num">463 g/m</span> — the parse returns a 20.00 × 20.00 bounding box and a centroid on the origin, so it read the profile correctly. With 6063-T5 at <span class="num">E = 69 GPa</span> that is <span class="num">EI = 4.82 × 10&#8312; N·mm&sup2;</span>.</p>
+    <p>The gantry then droops <span class="num">0.21 mm</span> at the camera with the carriage at 400 mm and the light at a middling offset, <span class="num">0.26 mm</span> with the light parked at the far tip. Tilt runs <span class="num">0.04–0.06°</span>. Working and drawings are in <code>datasheets/</code>.</p>
+    <p>That droop is a change in standoff, so what it costs is scale: about <span class="num">0.15 %</span> at a 150 mm working distance. Two things absorb it. Depth of field at 98 mm is roughly <span class="num">±1.3 mm</span>, so a quarter-millimetre never defocuses. And scale is measured from the fiducials in every frame rather than assumed from the mechanism, so a repeatable 0.15 % shift is read out, not designed out.</p>
+    <p>The conclusion is the one that shapes the build: chase settling time and drift, not section modulus. Which is an argument for Delrin wheels over the clear polycarbonate ones — they damp better and are kinder to the bearing bore. The clear wheels will work; just don't over-preload the eccentrics, and expect to wait longer after each nudge.</p>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Motor-ready, at no cost today</h2></div>
+    <p>The later version with tiny motors and spindles needs two provisions that are free to add now, and one that is already in the design.</p>
+    <ul class="tight">
+      <li>A boss on the plate with a clearance hole and two tapped M3s for an anti-backlash leadscrew nut. Unused on the manual build.</li>
+      <li>A motor mount face at the top of the spine, left blank.</li>
+      <li><strong>The counterweight itself.</strong> A NEMA8 has almost no torque; a balanced axis is the only way a small motor moves this gantry at all. It is not a manual-build feature to be removed later — it is what makes the motorised version possible.</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Open</h2></div>
+    <div class="decisions">
+      <div class="decision">
+        <span class="eyebrow open">Open</span>
+        <h3>Camera bar geometry</h3>
+        <p>Phone settled: Pixel 6a, 152.2 × 71.8 × 8.9 mm, 178 g. But the bar's offset from the top edge, its height and its protrusion are published nowhere trustworthy, and nor is the lens centre — those come off the actual phone with calipers before anything is cut. Stubbed and tagged in <code>cad/parts/pixel6a.scad</code>.</p>
+      </div>
+      <div class="decision">
+        <span class="eyebrow open">Open</span>
+        <h3>Button window</h3>
+        <p>Power and volume sit on one long edge — exactly the edge a U-cradle grips. With no relief window the cradle holds them down and the phone sleeps, screenshots and rides the volume. Measure and cut, rather than design around.</p>
+      </div>
+      <div class="decision">
+        <span class="eyebrow settled">Settled</span>
+        <h3>Braided line, not a belt</h3>
+        <p>Chosen for bulk and part count rather than mass &mdash; the two differ by about two grams in a 1078 g budget, so weight was never the argument. What 0.37 mm buys is a pulley an order of magnitude smaller than a 6 mm belt needs, routing that fits anywhere, no printed belt clip, and silence. The accepted trade is creep, and it costs less than it sounds.</p>
+      </div>
+      <div class="decision">
+        <span class="eyebrow settled">Settled</span>
+        <h3>Capstan tie-off, and a keeper on the pulley</h3>
+        <p>Braid is slippery and knots in it lose 20&ndash;30 %. Three or four turns around a printed post before a half hitch sheds nearly all the load to friction, so the knot carries almost nothing &mdash; and no clamp part, which suits the minimal build. Separately: a balanced line goes slack if the gantry is lifted faster than the weight follows, and slack cord jumps the groove. One pin or a printed shroud across the pulley face prevents that.</p>
+      </div>
+      <div class="decision">
+        <span class="eyebrow settled">Resolved</span>
+        <h3>Counterweight hangs below the desk</h3>
+        <p>The line drops through a hole in the desktop to a weight in the knee space, so shape stops mattering: a <strong>60 &times; 80 mm pot of steel shot</strong> makes the 1.02 kg, no lead needed. A removable lid turns the fill into the bias adjuster. Size the hole for clearance (~10 mm), not fit &mdash; the line pays 310 mm through it every stroke, and a braid sawing on bare timber is a real wear point, whereas a truly vertical run through an oversized hole never touches anything. A guide tube under the desk stops it swinging, stops it being kicked, and catches it if the line ever parts.</p>
+      </div>
+      <div class="decision">
+        <span class="eyebrow settled">Settled</span>
+        <h3>Clamped or screwed to the desk</h3>
+        <p>Deletes the ballast problem outright: 2.18 N&middot;m over 50 mm of clamp jaw is a <span class="num">44 N</span> couple, against the <span class="num">3.55 kg</span> of ballast a 140 mm freestanding base would have needed. It also drops the mount to 5&ndash;10 mm tall instead of 30&ndash;50, handing back travel at the bottom of the working band where the 98 mm focus limit bites. The catch: the bracket is now the softest thing in the chain, and PETG is about <strong>35&times; floppier than 6063</strong> for the same section &mdash; so keep metal in the moment path, and load any printed part in compression or shear rather than bending.</p>
+      </div>
+      <div class="decision">
+        <span class="eyebrow open">Open</span>
+        <h3>Plate detail</h3>
+        <p>Hole pattern for the four wheels, which two get eccentric spacers, line attachment on the spine's neutral axis, and the lock's form — friction pad versus a cam on the existing preload.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Section properties are computed from the manufacturer's DXF and reproducible via <code>datasheets/section_properties.py</code>. Everything downstream of the mass budget is still first-pass — the budget is the thing to keep honest as parts are actually chosen.</p>
+  </footer>
+
+</div>

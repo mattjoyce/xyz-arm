@@ -1,0 +1,88 @@
+{
+  "capture_path": "decoded_and_reencoded",
+  "captured_at": "2026-09-12T23:06:23.386199+10:00",
+  "from": "the capture itself",
+  "image": "005-still.jpg",
+  "measured": {
+    "ae_state": 2,
+    "af_state": "inactive",
+    "awb_gains": [
+      1.967,
+      1,
+      1,
+      1.734
+    ],
+    "colour_transform": [
+      1.574,
+      -0.441,
+      -0.129,
+      -0.16,
+      1.438,
+      -0.273,
+      0.035,
+      -0.605,
+      1.57
+    ],
+    "exposure_human": "30.02ms (1/33)",
+    "exposure_ns": 30016818,
+    "focus_diopters": 3.2,
+    "focus_metres_approx": 0.312,
+    "iso": 212,
+    "sensor_timestamp": 41497484696047
+  },
+  "orientation": {
+    "aim": "straight down, square to a level surface (0.34 degrees from gravity)",
+    "ambient_lux": 104.27,
+    "available": true,
+    "gravity": {
+      "x": -0.04,
+      "y": -0.04,
+      "z": 9.81
+    },
+    "measures": "the angle between the optical axis and gravity, averaged over 32 samples. It equals the angle to a flat subject only when the subject lies on a level surface.",
+    "pitch_degrees": -0.24,
+    "roll_degrees": -0.24,
+    "samples": 32,
+    "tilt_degrees": 0.34
+  },
+  "pipeline": {
+    "aberration": "off",
+    "edge": "high_quality",
+    "hot_pixel": "fast",
+    "noise_reduction": "high_quality",
+    "ois": "on",
+    "shading": "fast",
+    "tonemap": "fast",
+    "tonemap_points": 64
+  },
+  "settings": {
+    "ae": "auto",
+    "ae_lock": false,
+    "af": "off",
+    "awb": "auto",
+    "awb_gains_set": null,
+    "awb_lock": false,
+    "camera": "0",
+    "capture_path": "decoded_and_reencoded",
+    "cx": 0.935,
+    "cy": 0.552,
+    "ev": 0,
+    "exposure_ns": null,
+    "focus_box": null,
+    "focus_diopters": 3.19,
+    "focus_metres": 0.314,
+    "iso": null,
+    "jpeg_quality": 92,
+    "measure": false,
+    "out_h": null,
+    "out_w": null,
+    "preview_size": "1280x960",
+    "preview_size_requested": "1280x960",
+    "rotate": 0,
+    "shading_map": false,
+    "still_size": "max",
+    "torch": 0,
+    "zoom": 4
+  },
+  "tool": "DeskCam"
+}

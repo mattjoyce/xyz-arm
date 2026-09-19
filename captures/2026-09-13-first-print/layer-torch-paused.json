@@ -1,0 +1,89 @@
+{
+  "capture_path": "decoded_and_reencoded",
+  "captured_at": "2026-09-13T08:40:04.996075+10:00",
+  "from": "the capture itself",
+  "image": "003-still.jpg",
+  "measured": {
+    "ae_state": 0,
+    "af_state": "inactive",
+    "awb_gains": [
+      2.251,
+      1,
+      1,
+      1.638
+    ],
+    "colour_transform": [
+      1.367,
+      -0.16,
+      -0.203,
+      -0.238,
+      1.449,
+      -0.207,
+      0.004,
+      -0.586,
+      1.578
+    ],
+    "exposure_human": "66.66ms (1/15)",
+    "exposure_ns": 66661281,
+    "focus_diopters": 3.2,
+    "focus_metres_approx": 0.312,
+    "iso": 150,
+    "sensor_timestamp": 75919879856486
+  },
+  "orientation": {
+    "aim": "tilted well off straight down (57.36 degrees from gravity)",
+    "ambient_lux": 71.43,
+    "available": true,
+    "gravity": {
+      "x": 8.24,
+      "y": 0.58,
+      "z": 5.29
+    },
+    "measures": "the angle between the optical axis and gravity, averaged over 32 samples. It equals the angle to a flat subject only when the subject lies on a level surface.",
+    "pitch_degrees": 6.21,
+    "roll_degrees": 57.29,
+    "samples": 32,
+    "tilt_degrees": 57.36
+  },
+  "pipeline": {
+    "aberration": "off",
+    "edge": "high_quality",
+    "hot_pixel": "fast",
+    "noise_reduction": "high_quality",
+    "ois": "on",
+    "shading": "fast",
+    "tonemap": "fast",
+    "tonemap_points": 64
+  },
+  "settings": {
+    "ae": "manual",
+    "ae_lock": false,
+    "af": "off",
+    "awb": "daylight",
+    "awb_gains_set": null,
+    "awb_lock": true,
+    "camera": "0",
+    "capture_path": "decoded_and_reencoded",
+    "cx": 0.35,
+    "cy": 0.63,
+    "ev": 0,
+    "exposure_human": "66.67ms (1/15)",
+    "exposure_ns": 66666667,
+    "focus_box": null,
+    "focus_diopters": 3.19,
+    "focus_metres": 0.314,
+    "iso": 150,
+    "jpeg_quality": 92,
+    "measure": false,
+    "out_h": null,
+    "out_w": null,
+    "preview_size": "1280x960",
+    "preview_size_requested": "1280x960",
+    "rotate": 0,
+    "shading_map": false,
+    "still_size": "max",
+    "torch": 45,
+    "zoom": 4
+  },
+  "tool": "DeskCam"
+}

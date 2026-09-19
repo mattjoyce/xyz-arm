@@ -1,0 +1,91 @@
+{
+  "bytes": 1850442,
+  "capture_path": "camera_jpeg",
+  "captured_at": "2026-09-13T10:05:31.123726+10:00",
+  "from": "the capture itself",
+  "height_px": 3024,
+  "image": "deskcam-20260913-100530.jpg",
+  "measured": {
+    "ae_state": 1,
+    "af_state": "focused-locked",
+    "awb_gains": [
+      2.317,
+      1,
+      1,
+      1.777
+    ],
+    "colour_transform": [
+      1.574,
+      -0.441,
+      -0.129,
+      -0.16,
+      1.438,
+      -0.273,
+      0.035,
+      -0.605,
+      1.57
+    ],
+    "exposure_human": "40.02ms (1/25)",
+    "exposure_ns": 40022424,
+    "focus_diopters": 3.44,
+    "focus_metres_approx": 0.291,
+    "iso": 374,
+    "sensor_timestamp": 81046026100567
+  },
+  "orientation": {
+    "aim": "tilted well off straight down (30.70 degrees from gravity)",
+    "ambient_lux": 70.56,
+    "available": true,
+    "gravity": {
+      "x": 5,
+      "y": 0.2,
+      "z": 8.44
+    },
+    "measures": "the angle between the optical axis and gravity, averaged over 32 samples. It equals the angle to a flat subject only when the subject lies on a level surface.",
+    "pitch_degrees": 1.38,
+    "roll_degrees": 30.68,
+    "samples": 32,
+    "tilt_degrees": 30.7
+  },
+  "pipeline": {
+    "aberration": "off",
+    "edge": "high_quality",
+    "hot_pixel": "fast",
+    "noise_reduction": "high_quality",
+    "ois": "on",
+    "shading": "fast",
+    "tonemap": "fast",
+    "tonemap_points": 64
+  },
+  "settings": {
+    "ae": "auto",
+    "ae_lock": false,
+    "af": "continuous",
+    "awb": "auto",
+    "awb_gains_set": null,
+    "awb_lock": false,
+    "camera": "0",
+    "capture_path": "camera_jpeg",
+    "cx": 0.5,
+    "cy": 0.5,
+    "ev": 0,
+    "exposure_ns": null,
+    "focus_box": null,
+    "focus_diopters": null,
+    "iso": null,
+    "jpeg_quality": 92,
+    "measure": false,
+    "out_h": null,
+    "out_w": null,
+    "preview_size": "1280x960",
+    "preview_size_requested": "1280x960",
+    "rotate": 0,
+    "shading_map": false,
+    "still_size": "max",
+    "torch": 0,
+    "zoom": 1
+  },
+  "target": "http://192.168.86.123:8080",
+  "tool": "DeskCam",
+  "width_px": 4032
+}
