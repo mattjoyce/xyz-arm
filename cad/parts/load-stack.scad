@@ -10,7 +10,7 @@
 //
 // The rail guides the master. Its body stands 1 mm off the rail's rear face,
 // and a T slider is attached straight to the front wall at the top and at the
-// bottom, 20 mm tall each: a stem through the slot's 6 mm opening and a head
+// bottom, 20 and 10 mm tall: a stem through the slot's 6 mm opening and a head
 // in the channel behind the lips, slit down the middle so the load line runs
 // straight through. Both slide in from the rail's top end, before the spine
 // cap goes on. The top one overhangs the wall by 5.3 mm; slice with support
@@ -47,7 +47,8 @@ shot_w     = 40;             // the shot-filled master's section instead
 shot_d     = 60;
 shot_h     = 80;
 
-slider_h   = 20;     // each slider, top and bottom of the master; no wedge under the top one
+slider_h   = 20;     // the top slider
+slider_h_bot = 10;   // the bottom slider
 cell_h     = 18;
 cells      = 2;      // in the column and stack views
 lid_t      = 4;
@@ -136,7 +137,7 @@ module master() {
     difference() {
         union() {
             translate([0, box_y, 0]) rbox(stack_w, box_d, master_h, corner);
-            slider(slider_h);
+            slider(slider_h_bot);
             translate([0,0,master_h - slider_h]) slider(slider_h);
         }
         cavity(master_h, master_floor);
