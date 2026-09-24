@@ -1,11 +1,15 @@
 // Gantry plate, v2: the carriage that joins the spine to the gantry. One
-// 8 mm printed plate; three clear V wheels on its spine face ride the
-// vertical rail, three on its gantry face carry the horizontal one, each set
-// two fixed 60 mm apart and one opposing at the centre. The centre station
-// takes an eccentric spacer: some of the sets' spacers turned out to be
+// 8 mm printed plate; four clear V wheels on its spine face ride the
+// vertical rail, three on its gantry face carry the horizontal one. The spine
+// set is two fixed 60 mm apart on one side and two eccentrics opposite them
+// (iteration 50): with three, the arm's moment about the spine was held only
+// by the centre wheel's preload and the top fixed wheel pulled off the rail.
+// Four take it as a diagonal couple. The gantry set is two fixed 60 mm apart
+// and one eccentric opposing at the centre. Each eccentric station takes an
+// eccentric spacer: some of the sets' spacers turned out to be
 // eccentrics with a 7 mm collar (Matt, 2026-09-20, after the first plate was
 // printed without). `eccentric = false` gives that first plate back, where
-// preload is `preload`, the centre station drawn that much closer to the rail
+// preload is `preload`, each adjusting station drawn that much closer to the rail
 // than tangency, and the plate's own give.
 //
 // An eccentric's collar turns in the plate and the screw orbits it at
@@ -23,12 +27,12 @@
 // So every station here is counterbored 5 deep from the far face and the
 // head sits on 3 mm of plate, which is the same stack as a Mini V plate.
 //
-// That counterbore also settles the clash at the two centre stations. The
-// wheel's half width, the washer and the spacer put each rail's centre
+// That counterbore also settles the clash at the gantry's centre station.
+// The wheel's half width, the washer and the spacer put each rail's centre
 // 12.115 out from its plate face, so the OTHER rail's face sits 2.1 mm off
-// the far face, right over the centre station's head. Sunk 5 deep, a 3 mm
-// head is 2 mm below the face. The four outer stations are 30 mm off the
-// other rail's centreline anyway. Nuts go on the wheel side.
+// the far face, right over that station's head. Sunk 5 deep, a 3 mm head is
+// 2 mm below the face. Every other station is 30 mm off the other rail's
+// centreline. Nuts go on the wheel side.
 //
 // The balance line's front run hangs down the spine's front face from the
 // cap (spine-cap.scad) at x = 0 and ties to the plate's top lobe through a
@@ -52,14 +56,15 @@ size      = 84;
 thickness = 8;
 spacing   = 60;         // fixed wheels, centre to centre
 boss_r    = 10;         // outline round each station
-preload   = 0.1;        // centre station drawn this much inside tangency
-eccentric = true;       // eccentric spacer at each centre station
+preload   = 0.1;        // adjusting stations drawn this much inside tangency
+eccentric = true;       // eccentric spacer at each adjusting station
 screw_l   = 25;
 spacer_l  = 6;          // between the wheel and the plate
 shim_t    = 1;          // the set's washer, between wheel and spacer
 bolt_hole = 5.1;        // M5, close: the four fixed wheels are the datum, and in a 5.3 hole each
                         // could be pushed 0.15 off the rail by the preload. Ream with a 5 mm drill.
-ecc_fit   = 0.1;        // per side, printed, round the 7.11 collar hole
+ecc_fit   = 0.195;      // per side round the 7.11 collar hole: 7.5. At 7.31 the collar (7.0) was very
+                        // tight in print (Matt, 2026-09-23); holes print about 0.3 small here.
 ecc_slack = -0.1;       // wheel this far clear of the rail at the eccentric's loose end. Negative:
                         // on the second print (0.2) the eccentrics only gripped at the very end of
                         // their travel, 0.59 inside drawn tangency (Matt, 2026-09-20), so drawn
@@ -85,23 +90,24 @@ nut_thread = screw_l - (thickness - cbore_h) - spacer_l - shim_t - vwheel_width(
 ecc_hole  = spacer_plate_hole() + 2*ecc_fit;
 ecc_cbore = cbore_d + 2*spacer_eccentricity();     // the head orbits with the screw
 echo(str("rails ", 2*rail_face + thickness, " apart; other rail ", gap, " off the plate face; heads ", -proud,
-         " below it; ", nut_thread, " of thread for the nut; centre wheels ",
+         " below it; ", nut_thread, " of thread for the nut; adjusting wheels ",
          eccentric ? str(ecc_slack, " clear to ", 2*spacer_eccentricity() - ecc_slack, " inside tangency")
                    : str(preload, " inside tangency")));
-assert(proud < gap - 0.5, "centre station head fouls the other rail: deepen cbore_h or use a lower head");
+assert(proud < gap - 0.5, "gantry centre station head fouls the spine rail: deepen cbore_h or use a lower head");
 assert(nut_thread >= 4, "screw too short for the nyloc: deepen cbore_h or thin the plate");
 assert(thickness - cbore_h >= 2.5, "too little plate under the head");
 
-// Last point in each set is the eccentric adjuster.
+// The spine set's last two points and the gantry set's last are the
+// eccentric adjusters.
 function carriage_z_holes(spacing=60) =
     [[-vwheel_2020_offset(),-spacing/2],[-vwheel_2020_offset(),spacing/2],
-     [vwheel_2020_offset(),0]];
+     [vwheel_2020_offset(),-spacing/2],[vwheel_2020_offset(),spacing/2]];
 function carriage_x_holes(spacing=60) =
     [[-spacing/2,-vwheel_2020_offset()],[spacing/2,-vwheel_2020_offset()],
      [0,vwheel_2020_offset()]];
 
 // One station's holes. side: -1 the wheel is on the -Z face, +1 on +Z.
-// The centre station (adjust) moves toward the rail by preload, or, with an
+// An adjusting station moves toward the rail by preload, or, with an
 // eccentric, puts the collar's centre where the wheel's swing starts
 // ecc_slack clear of the rail.
 module station(p, side, adjust) {
@@ -124,7 +130,7 @@ module outline_2d(size, spacing) {
 }
 // What stays when the plate is lightened: the rim, a boss round every
 // station, a hub round the centre hole, and a spoke from the hub to the
-// three spine stations and the centre gantry station. The two outer gantry
+// four spine stations and the centre gantry station. The two outer gantry
 // stations sit on the rim beside the spine's fixed pair and need no spoke.
 // The windows are whatever is left, corners rounded.
 module web_2d(size, spacing) {
@@ -143,7 +149,7 @@ module compact_carriage(size=84, thickness=8, spacing=60) {
     difference() {
         linear_extrude(height=thickness, center=true) outline_2d(size, spacing);
         tie();
-        for(i=[0:2]) station(z[i], -1, i == 2);
+        for(i=[0:3]) station(z[i], -1, i >= 2);
         for(i=[0:2]) station(x[i], +1, i == 2);
         cylinder(h=thickness + 2, d=centre_d, center=true, $fn=32);
         if(lighten) linear_extrude(height=thickness + 2, center=true) windows_2d(size, spacing);
