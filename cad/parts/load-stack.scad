@@ -10,11 +10,15 @@
 //
 // The rail guides the master. Its body stands 1 mm off the rail's rear face,
 // and a T slider is attached straight to the front wall at the top and at the
-// bottom, 20 and 10 mm tall: a stem through the slot's 6 mm opening and a head
+// bottom, 5 mm tall each: a stem through the slot's 6 mm opening and a head
 // in the channel behind the lips, slit down the middle so the load line runs
 // straight through. Both slide in from the rail's top end, before the spine
-// cap goes on. The top one overhangs the wall by 5.3 mm; slice with support
-// under it. The line runs down inside the channel,
+// cap goes on. The top one overhangs the wall by 6.3 mm, so its underside is
+// tapered at 45 degrees (Matt, 2026-09-20): from the wall out to the tip in y,
+// and from the stem's sides out to the head's edges in x, added together, so
+// every point of the underside has material within 45 degrees below it and it
+// prints with no support. The taper hangs under the 5 mm that captures; it
+// bears nothing. The line runs down inside the channel,
 // through both slits, out under the master, along a channel in the floor's
 // underside to an M2 and is clamped under its head. The master's floor is
 // thick enough to hold the screw, which is the only height this costs.
@@ -31,7 +35,11 @@ slide_h    = 20;
 slide_handle = 6;    // behind the front face
 
 rail       = 20;
-// Plain T-slot 2020: spine-cap.scad has the same numbers. Measure the rail.
+// Slot numbers as printed and proven: the master's sliders fit and slide on
+// the V-slot, 2026-09-20 (Matt: a little white grease). spine-cap.scad has the
+// same numbers. The datasheet's V-slot is 6.25 at the throat, 6.1 to the
+// floor; the fit rides on the stem and has clearance everywhere else, so the
+// difference is not material. Do not retune.
 slot_w     = 6.0;    // opening at the face
 lip_t      = 1.8;    // face to the underside of the lip
 chan_w     = 11;     // channel width just behind the lips
@@ -47,8 +55,9 @@ shot_w     = 40;             // the shot-filled master's section instead
 shot_d     = 60;
 shot_h     = 80;
 
-slider_h   = 20;     // the top slider
-slider_h_bot = 10;   // the bottom slider
+slider_h   = 5;      // the top slider: capture only, not a guide
+slider_h_bot = 5;    // the bottom slider
+top_taper  = true;   // 45 degree underside on the top slider instead of support
 cell_h     = 18;
 cells      = 2;      // in the column and stack views
 lid_t      = 4;
@@ -80,6 +89,9 @@ knee_in  = rail/2 - lip_t - chan_str + head_clr;   // where the channel starts a
 head_in  = rail/2 - chan_d + head_clr;        // head reaches to just off the floor
 head_bot = head_w - 2*(knee_in - head_in);    // width at the bottom after the 45 degree taper
 line_y   = stem_in;                           // hole centred on the junction
+// The taper's height: the underside is z = (front_y - y) + max(0, |x| - stem_w/2),
+// highest at the head's outer knees and at its floor corners.
+taper_h  = top_taper ? max(front_y - knee_in + (head_w - stem_w)/2, front_y - head_in + (head_bot - stem_w)/2) : 0;
 stack_w  = use_insert ? insert_n*insert[0] + insert_clr + 2*wall : shot_w;
 box_d    = use_insert ? insert[1] + insert_clr + 2*wall : shot_d;
 stack_d  = box_d;
@@ -94,6 +106,7 @@ echo(str("master ", stack_w, " x ", stack_d, " x ", master_h, use_insert ? str("
          str(", ", master_cav, " cm3: ", master_cav*shot_steel, " g steel shot, ", master_cav*shot_lead, " g lead shot")));
 echo(str("cell ", cell_cav, " cm3: ", cell_cav*shot_steel, " g steel shot"));
 echo(str("stack ", stack_h, " mm tall with ", cells, " cells; budget about 130"));
+echo(str("top slider: ", slider_h, " capturing over a ", taper_h, " taper, ", slider_h + taper_h, " tall"));
 echo(str("slider: stem ", stem_w, " wide to ", stem_in, " from centre; head ", head_w, " wide to ", knee_in,
          ", then 45 in to ", head_bot, " wide at ", head_in, "; line at ", line_y, ", ", rail/2 - line_y, " inside the face"));
 assert(head_bot >= 3, "slider head tapers to nothing: raise head_in or chan_str");
@@ -113,16 +126,29 @@ module foot() {
 // The T slider, height h: stem from the front face in to under the lips, a
 // head full width for the channel's straight part, then 45 degrees in to the
 // bottom, which is the shape of a 2020 channel.
-module slider(h) {
+// With taper = true the bottom taper_h of it is cut to the 45 degree
+// underside, z = (front_y - y) + max(0, |x| - stem_w/2): a wedge rising from the
+// wall in y, plus a wedge rising from the stem's sides in x, so a wing is held
+// by the stem beside it and the stem by the wall behind it. Three half-spaces.
+module slider(h, taper=false) {
     difference() {
-        linear_extrude(h) polygon([
-            [-stem_w/2, front_y + 0.01], [-stem_w/2, stem_in], [-head_w/2, stem_in], [-head_w/2, knee_in],
-            [-head_bot/2, head_in], [head_bot/2, head_in], [head_w/2, knee_in], [head_w/2, stem_in],
-            [stem_w/2, stem_in], [stem_w/2, front_y + 0.01]
-        ]);
+        intersection() {
+            linear_extrude(h) polygon([
+                [-stem_w/2, front_y + 0.01], [-stem_w/2, stem_in], [-head_w/2, stem_in], [-head_w/2, knee_in],
+                [-head_bot/2, head_in], [head_bot/2, head_in], [head_w/2, knee_in], [head_w/2, stem_in],
+                [stem_w/2, stem_in], [stem_w/2, front_y + 0.01]
+            ]);
+            if(taper) intersection() {
+                halfspace(0, -1, front_y);
+                halfspace(1, -1, front_y - stem_w/2);
+                halfspace(-1, -1, front_y - stem_w/2);
+            }
+        }
         translate([-slider_slit/2, head_in - 1, -1]) cube([slider_slit, front_y - head_in + 2, h + 2]);
     }
 }
+// The solid z >= cx*x + cy*y + c0: a big cube sheared so its floor is that plane.
+module halfspace(cx, cy, c0) { multmatrix([[1,0,0,0],[0,1,0,0],[cx,cy,1,c0],[0,0,0,1]]) translate([-50,-50,0]) cube(100); }
 // Line termination on the underside: the line comes out of the bottom
 // slider's slit at line_y, turns along a channel to the M2 and is clamped
 // under its head. Drawn for z = 0 as the face, going +z into the material.
@@ -138,7 +164,7 @@ module master() {
         union() {
             translate([0, box_y, 0]) rbox(stack_w, box_d, master_h, corner);
             slider(slider_h_bot);
-            translate([0,0,master_h - slider_h]) slider(slider_h);
+            translate([0,0,master_h - slider_h - taper_h]) slider(slider_h + taper_h, top_taper);
         }
         cavity(master_h, master_floor);
         termination();
@@ -170,14 +196,9 @@ module slider_test() {   // the bottom slider on a slab as thick as the master's
     }
 }
 
+use <vslot-2020.scad>
 module spine_stub(h) {
-    %color([0.66,0.71,0.75]) translate([0,0,-40]) linear_extrude(h + 80) difference() {
-        square(rail, center=true);
-        for(a=[0:90:270]) rotate(a) {
-            translate([-slot_w/2, rail/2 - lip_t]) square([slot_w, lip_t + 1]);
-            translate([-chan_w/2, rail/2 - chan_d]) square([chan_w, chan_d - lip_t]);
-        }
-    }
+    %color([0.66,0.71,0.75]) translate([0,0,-40]) linear_extrude(h + 80) vslot_2020_profile();
     %color([0.1,0.7,0.9]) translate([0, line_y, -5]) cylinder(h=h + 60, d=0.6, $fn=8);
 }
 

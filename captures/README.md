@@ -95,3 +95,14 @@ Raking light is a topography amplifier — it casts long shadows from features t
 may be tens of microns tall. The ripple visible in the solid top surface looks far
 worse here than it is, and none of it bears on what the gauge measures: aperture
 wall positions and bolt-hole centres, neither of which is a top surface.
+
+## 2026-09-20-arm-first-look
+
+The first frame taken from the arm itself: the Pixel 6a in the Manfrotto clamp on the
+gantry rail, arm holding at mid travel on the V-groove cap and the master load. One
+full-frame `snap`, auto exposure 1/100 at ISO 109, focus fixed at 0.392 m, no torch.
+The phone reported 1.55° from gravity (pitch 1.54°, roll -0.14°), so the rail and
+clamp put it square without any adjustment. The turntable bearing and the fins base
+fill the lower right corner of the frame, with the gantry rail running out of it: at
+this reach the arm sees its own foot, and that corner is lost to a subject. A 150 mm
+steel rule is in frame but no scale was measured from it.
