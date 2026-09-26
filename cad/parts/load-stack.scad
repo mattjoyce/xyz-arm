@@ -50,20 +50,27 @@ slide_handle = 6;    // behind the front face
 
 rail       = 20;
 use_washers = true;
-washer     = [50, 50, 5];    // across, deep, thick: measure the ones bought
-washer_g   = 79.68;          // each, Bunnings' listing
-washer_n   = 14;             // the box's capacity
+washer     = [50, 50, 5];    // across, deep, thick: 86 g is 4.9 of steel, so 5 is near
+washer_g   = 86;             // each, weighed by Matt, 2026-09-26: Macsim M16
+washer_n   = 12;             // all Bunnings had; with the bolt, 1.16 kg
 washer_clr = 0.75;           // a side: hot-dip galvanising runs over size
 washer_top = 1.5;            // headroom over a full stack
 washer_wall = 2.4;           // six 0.4 mm perimeters: the corner posts stand alone
 washer_frame = true;         // open sides and back: a front wall and four corner posts
 corner_leg = 12;             // each post's legs, along each side from the inside corner
 rear_posts = false;          // the corner posts away from the spine: the stem holds the washers
-washer_stem = true;          // a stem up the middle through the washers' holes
+washer_stem = false;         // a printed stem up the middle; the bolt does it now
+bolt_stem  = true;           // an M16 hex bolt, head down in a pocket in the floor, as the stem
+bolt_af    = 24.11;          // head across flats, measured
+bolt_head  = 10.5;
+bolt_l     = 65;             // under the head
+bolt_g     = 129;
+bolt_fit   = 0.2;            // a side round the head, and over it
+bolt_skin  = 2;              // floor under the head
 stem_d     = 16.5;           // M16 washers' hole is nominally 17.5 to 18: measure
 stem_chamfer = 1.5;          // lead-in at the top
 nut_proud  = 2;              // carriage spine wheel nuts past the rail's rear face
-nut_clr    = 1.5;
+nut_clr    = 2;                // clear of the nuts (Matt, 2026-09-26)
 // Slot numbers as printed and proven: the master's sliders fit and slide on
 // the V-slot, 2026-09-20 (Matt: a little white grease). spine-cap.scad has the
 // same numbers. The datasheet's V-slot is 6.25 at the throat, 6.1 to the
@@ -92,7 +99,7 @@ cells      = use_washers ? 0 : 2;      // in the column and stack views
 lid_t      = 4;
 wall       = use_washers ? washer_wall : 1.2;    // three 0.4 mm perimeters for shot
 floor_t    = 1.2;    // cells
-master_floor = 6;    // the master: holds the M2
+master_floor = use_washers && bolt_stem ? bolt_skin + bolt_head + bolt_fit : 6;    // the master: holds the M2, and the bolt's head
 foot_h     = 1.2;    // into the cavity below; its 45 degree flare is the wall
 foot_clr   = 0.15;   // a side
 corner     = 2;
@@ -132,8 +139,10 @@ master_cav = cav_w*cav_d*(master_h - master_floor - foot_h)/1000;
 cell_cav   = cav_w*cav_d*(cell_h - floor_t - foot_h)/1000;
 stack_h    = master_h + cells*cell_h + (use_washers ? 0 : lid_t);
 if(use_washers) echo(str("washer box ", stack_w, " x ", stack_d, " x ", master_h, ", front face ", spine_clr,
-         " off the rail; ", washer_n, " washers ", washer_n*washer[2], " tall, ", washer_n*washer_g/1000, " kg; 13 is ",
-         13*washer_g/1000, " kg"));
+         " off the rail; ", washer_n, " washers ", washer_n*washer[2], " tall, ", washer_n*washer_g/1000, " kg",
+         bolt_stem ? str(", with the bolt ", (washer_n*washer_g + bolt_g)/1000, " kg; bolt ", bolt_l - washer_n*washer[2] + bolt_fit,
+                         " above the top washer") : ""));
+if(use_washers && bolt_stem) assert(bolt_l > washer_n*washer[2], "bolt shorter than the washer stack");
 if(!use_washers) echo(str("master ", stack_w, " x ", stack_d, " x ", master_h, use_insert ? str(", round ", insert_n, " block(s)") :
          str(", ", master_cav, " cm3: ", master_cav*shot_steel, " g steel shot, ", master_cav*shot_lead, " g lead shot")));
 if(!use_washers) echo(str("cell ", cell_cav, " cm3: ", cell_cav*shot_steel, " g steel shot"));
@@ -201,8 +210,14 @@ module master() {
         cavity(master_h, master_floor);
         termination();
         if(use_washers && washer_frame) frame_windows();
+        if(use_washers && bolt_stem) bolt_pocket();
     }
     if(use_washers && washer_stem) stem();
+}
+// The bolt's head, sunk flush in the floor from above, flats to the sides.
+// The washers sit on the floor round it and the shank is the stem.
+module bolt_pocket() {
+    translate([0, box_y, bolt_skin]) rotate([0, 0, 30]) cylinder(h=master_h, d=(bolt_af + 2*bolt_fit)/cos(30), $fn=6);
 }
 // The stem: up the middle from the floor to the top of the posts, through
 // the washers' holes, chamfered at the top so a washer finds it.
@@ -279,6 +294,10 @@ else if(part == "print") {
 else if(part == "stack") {
     master();
     if(cells > 0) for(i=[0:cells-1]) translate([0,0,master_h + i*cell_h]) cell();
+    if(use_washers && bolt_stem) %color([0.45,0.47,0.5]) translate([0, box_y, bolt_skin]) {
+        rotate([0, 0, 30]) cylinder(h=bolt_head, d=bolt_af/cos(30), $fn=6);
+        cylinder(h=bolt_head + bolt_l, d=16);
+    }
     if(use_washers) for(i=[0:washer_n-1]) %color([0.55,0.57,0.6]) translate([0, box_y, master_floor + i*washer[2]])
         difference() { translate([-washer[0]/2, -washer[1]/2, 0]) cube([washer[0], washer[1], washer[2] - 0.2]); translate([0,0,-1]) cylinder(h=washer[2] + 2, d=18); }
     else translate([0,0,master_h + cells*cell_h]) lid();
