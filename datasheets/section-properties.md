@@ -2,7 +2,8 @@
 
 Computed from OpenBuilds' own DXF (`openbuilds-vslot-20x20.dxf`) by numerical
 integration over the closed profile, not taken from a vendor spec table.
-Reproduce with `python3 section_properties.py openbuilds-vslot-20x20.dxf`.
+Reproduce with `python3 section_properties.py openbuilds-vslot-20x20.dxf`. The DXF is
+not redistributed here; download it from OpenBuilds (see the repository README).
 
 ## Parse validation
 
