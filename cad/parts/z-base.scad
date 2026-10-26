@@ -186,20 +186,11 @@ fin_t           = 2.4;   // fin thickness: six 0.4 mm perimeters
 fin_h           = 30;    // height up the boss corner
 fin_reach       = 44;    // out along the arm from the axis, short of the lug
 boss_turn       = 45;    // boss rotation about Z, so corners point down the arms
-// The load stack's two guide lines are one loop: down from the spine cap's
-// rear anchors, round a short square U on the boss's rear face, back up. One
-// thing to tension, at the cap's M2 clamps. The rear face is the utility face:
-// the tee bolts are on it too (tee_on_rear). The groove is a T in section, a
-// narrow mouth over a wider channel, so a thin line presses in and cannot come
-// back out under tension. Positions match spine-cap.scad and load-stack.scad.
-tee_on_rear     = true;  // fins: tee bolts on the boss's local +Y face, with the U
-guide_x         = 7.5;   // either side of the rail centre: legs clear the bolt heads by 1.4
-guide_y         = 15;    // behind the rail centre: inside the boss wall, so grooved
-guide_leg_to_window = true;   // the bar crosses at the nut window: the line spans it in air
-guide_mouth_w   = 1.2;   // at the face
-guide_mouth_d   = 1.0;
-guide_chan_w    = 1.8;   // behind the mouth: the hook
-guide_chan_d    = 1.2;
+// The rear face is the utility face: the tee bolts are on it (tee_on_rear).
+// It used to carry a U groove for the load stack's guide line loop as well.
+// The guide lines were given up for the rail's own slot (load-stack.scad v7),
+// so the groove is gone and the face is plain round the bolts.
+tee_on_rear     = true;  // fins: tee bolts on the boss's local +Y face
 
 /* [Display] */
 show_context    = false; // add bearing + rail stub for a fit check
@@ -415,25 +406,8 @@ module boss_body() {
     }
 }
 
-// Square U groove for the guide line loop, on the boss's local +Y (rear) face:
-// two legs down from the top, past the upper bolt head, to a bar at the nut
-// window's height, so the line spans the open window. The socket is then only
-// as tall as the upper bolt needs. T in section: mouth, then channel.
-guide_bar_z = plate_t + keyhole_mid;
-guide_top   = plate_t + socket_h + 1;
-assert(guide_mouth_d + guide_chan_d <= socket_wall - 1.5, "guide groove through the boss wall");
-assert(guide_x - guide_chan_w/2 - tee_head/2 >= 1, "guide legs into the tee counterbores");
+// The socket is only as tall as the upper bolt needs.
 assert(plate_t + socket_h - (plate_t + max(tee_heights) + tee_head/2) >= 2, "socket too short over the upper bolt head");
-module guide_u_2d(w) {   // XZ, absolute z
-    for(sx=[-1,1]) translate([sx*guide_x - w/2, guide_bar_z]) square([w, guide_top - guide_bar_z]);
-    translate([-guide_x, guide_bar_z - w/2]) square([2*guide_x, w]);
-}
-module guide_groove() {
-    translate([0, boss/2 + 1, 0]) rotate([90,0,0]) {
-        linear_extrude(1 + guide_mouth_d) guide_u_2d(guide_mouth_w);
-        translate([0,0,1 + guide_mouth_d - 0.01]) linear_extrude(guide_chan_d + 0.01) guide_u_2d(guide_chan_w);
-    }
-}
 
 // Head counterbores into the open boss face, shared by fast and fins.
 module tee_counterbores(heights=tee_heights) {
@@ -463,7 +437,6 @@ module z_base_fins() {
         rotate(boss_turn) {
             rail_pocket(through=true);
             rotate(tee_on_rear ? 90 : 0) { tee_holes(); tee_counterbores(); }
-            guide_groove();
         }
         mount_pilots();
         if(section_view) translate([-plate_d,0,-1])
